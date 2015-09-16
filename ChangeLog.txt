@@ -1,0 +1,7 @@
+﻿Added configuration window using Dropdownlists for the keys
+Added ability to enable/disable mouse wheel in Editors
+Changed "sneak" key from left shift to left control to avoid conflict with mouse wheel left shift
+Added toolbar icon which turns green when WASD editor is active
+Disable WASD editor when part is selected
+Refactored code to make it more organized
+Replaced logging code with a class

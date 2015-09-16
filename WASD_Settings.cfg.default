@@ -1,0 +1,61 @@
+WASDEDITORCAMERA 
+{
+	EDITORS
+	{
+		VAB
+		{
+			initialPosition = -6.1, 17.7, -1.9
+			initialPitch = 16.386
+			initialYaw = 72.536
+			BOUNDS
+			{
+				min = -28.8, 0.8, -22.5
+				max = 29.7, 70, 22.7
+			}
+		}
+		SPH
+		{
+			initialPosition = -8.6, 14.4, 2.7
+			initialPitch = 14.080
+			initialYaw = 120.824
+			BOUNDS
+			{
+				min = -43.2, 1.4, -56.0
+				max = 43.0, 30.3, 56.0
+			}
+		}
+	}
+	KEYS
+	{
+		// Key names: http://docs.unity3d.com/ScriptReference/KeyCode.html
+		forward = W
+		back = S
+		right = D
+		left = A
+		up = E
+		down = Q
+		run = Space
+		sneak = LeftControl
+		switchMode = Alpha5
+	}
+	enableExperimentalEditorExtensionsCompatibility = true
+
+	// Use wasd camera by default?
+	defaultCamera = true
+	
+	enforceBounds = true
+
+	// Mouse speed
+	sensitivity = 14
+
+	// Mouse wheel
+	mouseWheelActive = true
+	mouseWheelAcceleration = 1.75
+
+	// Stoke's drag model.
+	// How to calculate values for max speed and response time: http://stackoverflow.com/a/667090
+	acceleration = 150
+	friction = 10
+	runMultiplier = 2
+	sneakMultiplier = 0.3
+}

@@ -17,7 +17,7 @@ namespace WasdEditorCamera
 		private static  String CONFIG_BASE_FOLDER = ROOT_PATH + "GameData/";
 
 		private static  String WASD_BASE_FOLDER = CONFIG_BASE_FOLDER + "WasdEditorCamera/";
-		public static string TEXTURE_DIR = WASD_BASE_FOLDER + "Textures/";
+		private static string TEXTURE_DIR = "WasdEditorCamera/" + "Textures/";
 
 		private static String WASD_NODENAME = "WASDEDITORCAMERA";
 		private static String WASD_CFG_FILE = WASD_BASE_FOLDER + "WASD_Settings.cfg";
@@ -196,12 +196,17 @@ namespace WasdEditorCamera
 		{
 
 			// Create the button in the KSP AppLauncher
+
 			if (!WASD_Texture_Load) {
-				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-38"))
+				if (System.IO.File.Exists (TEXTURE_DIR + "WASD-38.png")) {
+
+				}
+				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-38")) {
 					WASD_button_off = GameDatabase.Instance.GetTexture (TEXTURE_DIR + "WASD-38", false);
-				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-on-38"))
+				}
+				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-on-38")) {
 					WASD_button_on = GameDatabase.Instance.GetTexture (TEXTURE_DIR + "WASD-on-38", false);
-				
+				}
 
 				WASD_Texture_Load = true;
 			}
@@ -509,7 +514,7 @@ namespace WasdEditorCamera
 			/// These have to be here so that when they are clicked on, they will overwrite the other controls in the column
 			/// 
 
-
+			#if true
 			strkeyForward = comboBoxList [cbkeyForward.List (new Rect (135,25,150, 20), strkeyForward, comboBoxList, listStyle)].text;
 			strkeyBack = comboBoxList [cbkeyBack.List (new Rect (135, 50, 150, 20), strkeyBack, comboBoxList, listStyle)].text;
 			strkeyRight = comboBoxList [cbkeyRight.List (new Rect (135, 75, 150, 20), strkeyRight, comboBoxList, listStyle)].text;
@@ -519,7 +524,9 @@ namespace WasdEditorCamera
 			strkeyRun = comboBoxList [cbkeyRun.List (new Rect (135, 175, 150, 20), strkeyRun, comboBoxList, listStyle)].text;
 			strkeySneak = comboBoxList [cbkeySneak.List (new Rect (135, 200, 150, 20), strkeySneak, comboBoxList, listStyle)].text;
 			strkeySwitchMode = comboBoxList [cbkeySwitchMode.List (new Rect (135, 225, 150, 20), strkeySwitchMode, comboBoxList, listStyle)].text;
-
+			#endif
+			GUILayout.EndVertical ();
+			GUILayout.EndArea ();
 
 			GUILayout.BeginArea (new Rect (400, 50, 300, 500));
 			GUILayout.BeginVertical ();

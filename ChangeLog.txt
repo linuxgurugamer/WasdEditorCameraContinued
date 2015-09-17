@@ -10,3 +10,8 @@
 0.3.0
 	Fixed problem with messed up settings dialog
 	Fixed missing icons
+
+0.4.0
+	Removed automatic switch to normal mode when selecting a part
+	Renamed config.cfg in distribution to WASD_Settings.cfg.  This was preventing
+	settings from being saved properly

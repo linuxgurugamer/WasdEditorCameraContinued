@@ -52,7 +52,7 @@ copy bin\Release\WasdEditorCamera.dll %HOMEDIR%\install\Gamedata\WasdEditorCamer
 copy  WASD.version %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy README.md %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy ChangeLog.txt %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy config.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera
+copy WASD_Settings.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy WASD_Settings.cfg.default %HOMEDIR%\install\Gamedata\WasdEditorCamera
 pause
 

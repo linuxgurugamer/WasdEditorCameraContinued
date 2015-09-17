@@ -93,11 +93,11 @@ namespace WasdEditorCamera
 			GameEvents.onEditorPartEvent.Add (partEventListener);
 			OnCleanup += () => GameEvents.onEditorPartEvent.Remove (partEventListener);
 
+
 			if (config.defaultCamera) {
 				SwitchMode (false);
 				ResetCamera ();
 			}
-
 
 		}
 
@@ -162,10 +162,12 @@ namespace WasdEditorCamera
 				Vector3 point;
 				float distance;
 				var rayHit = GetNewFocalPoint (out point, out distance);
+				Log.Info ("point: " + point.ToString () + "   distance: " + distance.ToString ());
+
 				if (EditorDriver.editorFacility == EditorFacility.VAB) {
 					// Try to keep camera in place but looking at central pillar. VABCamera doesn't have xz offset.
+					#if true
 					var cam = (VABCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(VABCamera));
-
 					if (!rayHit) {
 						var xzOffset = EditorLogic.fetch.editorCamera.gameObject.transform.position;
 						xzOffset.y = 0;
@@ -179,7 +181,7 @@ namespace WasdEditorCamera
 					} else {
 						point = new Vector3 (0, point.y, 0);
 					}
-
+				
 					cam.PlaceCamera (point, distance);
 
 					var lookDir = (point - pos).normalized;
@@ -189,7 +191,17 @@ namespace WasdEditorCamera
 
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
-					
+					#else
+					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
+					cam.maxDisplaceX = movementBounds.extents.x;
+					cam.maxDisplaceZ = movementBounds.extents.z;
+
+					cam.PlaceCamera (point, distance);
+					cam.camPitch = pitch * Mathf.PI / 180;
+					cam.camHdg = yaw * Mathf.PI / 180;
+					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
+					cam.enabled = true;
+					#endif
 				} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
 					cam.maxDisplaceX = movementBounds.extents.x;
@@ -231,6 +243,10 @@ namespace WasdEditorCamera
 
 		private bool GetNewFocalPoint (out Vector3 point, out float distance)
 		{
+			Log.Info ("GetNewFocalPoint");
+			Log.Info ("EditorLogic.fetch.editorCamera.transform.position: " + EditorLogic.fetch.editorCamera.transform.position.ToString ());
+			Log.Info ("EditorLogic.fetch.editorCamera.transform.TransformDirection (Vector3.forward): " + EditorLogic.fetch.editorCamera.transform.TransformDirection (Vector3.forward).ToString ());
+
 			var MAX_DISTANCE = 10f;
 			Ray ray = new Ray (EditorLogic.fetch.editorCamera.transform.position, 
 				          EditorLogic.fetch.editorCamera.transform.TransformDirection (Vector3.forward));
@@ -279,14 +295,14 @@ namespace WasdEditorCamera
 			if (Input.GetKeyDown (config.keySwitchMode)) {
 				SwitchMode ();
 			}
-			if (selectedPart && EditorLogic.SelectedPart == null)
-				SwitchMode (false, false);
+//			if (selectedPart && EditorLogic.SelectedPart == null)
+//				SwitchMode (false, false);
 			if (!cameraEnabled)
 				return;
-			if (EditorLogic.SelectedPart != null) {
-				SwitchMode (false, true);
-				return;
-			}
+//			if (EditorLogic.SelectedPart != null) {
+//				SwitchMode (false, true);
+//				return;
+//			}
 
 			cursorLocker.LockUpdate ();
 
@@ -395,7 +411,7 @@ namespace WasdEditorCamera
 				EditorLogic.fetch.editorCamera.transform.rotation = rot;
 
 				if (!movePart && EditorLogic.SelectedPart != null && EditorLogic.fetch.EditorConstructionMode == ConstructionMode.Place
-				   && (delta != Vector3.zero || dx != 0 || dy != 0)) {
+				    && (delta != Vector3.zero || dx != 0 || dy != 0)) {
 					movePart = true;
 					// A convenient trick to prevent EditorLogic::dragOverPlane from updating the part position.
 					EditorBounds.Instance.constructionBounds = ZERO_BOUNDS;

@@ -192,7 +192,10 @@ namespace WasdEditorCamera
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
 					#else
+
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
+					Log.Info("cam.maxDisplaceX: " + cam.maxDisplaceX.ToString() + "     movementBounds.extents.x: " + movementBounds.extents.x.ToString());
+					Log.Info("cam.maxDisplaceZ: " + cam.maxDisplaceZ.ToString() + "     movementBounds.extents.z: " + movementBounds.extents.z.ToString());
 					cam.maxDisplaceX = movementBounds.extents.x;
 					cam.maxDisplaceZ = movementBounds.extents.z;
 
@@ -201,6 +204,7 @@ namespace WasdEditorCamera
 					cam.camHdg = yaw * Mathf.PI / 180;
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
+				
 					#endif
 				} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));

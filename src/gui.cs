@@ -171,10 +171,10 @@ namespace WasdEditorCamera
 
 		}
 
-		public void setAppLauncherHidden ()
-		{
-			appLaucherHidden = true;
-		}
+//		public void setAppLauncherHidden ()
+//		{
+//			appLaucherHidden = true;
+//		}
 
 		public void OnGUIShowApplicationLauncher ()
 		{
@@ -198,9 +198,6 @@ namespace WasdEditorCamera
 			// Create the button in the KSP AppLauncher
 
 			if (!WASD_Texture_Load) {
-				if (System.IO.File.Exists (TEXTURE_DIR + "WASD-38.png")) {
-
-				}
 				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-38")) {
 					WASD_button_off = GameDatabase.Instance.GetTexture (TEXTURE_DIR + "WASD-38", false);
 				}

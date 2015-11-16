@@ -82,6 +82,7 @@ namespace WasdEditorCamera
 
 		private void Start ()
 		{
+			DontDestroyOnLoad (this);
 			comboBoxList = new GUIContent[87];
 			string[] keys = {"Space", "Keypad0", "Keypad1", "Keypad2", "Keypad3", "Keypad4", "Keypad5", "Keypad6",
 				"Keypad7", "Keypad8", "Keypad9", "KeypadPeriod", "KeypadDivide", "KeypadMultiply", "KeypadMinus",
@@ -229,8 +230,9 @@ namespace WasdEditorCamera
 		public void GUIToggle ()
 		{
 			stockToolBarcreated = true;
-
 			infoDisplayActive = !infoDisplayActive;
+			Log.Info ("GUIToggle, infoDisplayActive: " + infoDisplayActive.ToString());
+
 			if (infoDisplayActive) {
 				SetVisible (true);
 			} else {
@@ -257,6 +259,7 @@ namespace WasdEditorCamera
 
 		public void SetVisible (bool visible)
 		{
+			Log.Info ("SetVisible   visible: " + visible.ToString ());
 			this.visible = visible;
 		}
 
@@ -264,6 +267,7 @@ namespace WasdEditorCamera
 		{
 			try {
 				if (this.Visible ()) {
+					Log.Info("OnGUI");
 					this.bounds = GUILayout.Window (this.GetInstanceID (), this.bounds, this.Window, TITLE, HighLogic.Skin.window);
 				}
 			} catch (Exception) {
@@ -292,6 +296,7 @@ namespace WasdEditorCamera
 
 		private void Window (int id)
 		{
+			Log.Info ("Window");
 			if (cfgWinData == false) {
 				cfgWinData = true;
 	

@@ -15,3 +15,7 @@
 	Removed automatic switch to normal mode when selecting a part
 	Renamed config.cfg in distribution to WASD_Settings.cfg.  This was preventing
 	settings from being saved properly
+0.5.0
+	1.0.5 rebuild
+0.5.1
+	Fixed problem where settings window would only show one time

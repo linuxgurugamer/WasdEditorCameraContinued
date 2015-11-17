@@ -19,3 +19,5 @@
 	1.0.5 rebuild
 0.5.1
 	Fixed problem where settings window would only show one time
+0.5.2
+	Fixed NullRefreence when not in editor mode

@@ -296,9 +296,13 @@ namespace WasdEditorCamera
 
 		public void LateUpdate ()
 		{
+			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)
+				return;
+
 			if (Input.GetKeyDown (config.keySwitchMode)) {
 				SwitchMode ();
 			}
+
 //			if (selectedPart && EditorLogic.SelectedPart == null)
 //				SwitchMode (false, false);
 			if (!cameraEnabled)
@@ -366,6 +370,7 @@ namespace WasdEditorCamera
 
 			// WASD in place mode is part rotation.
 			var simpleMove = EditorLogic.SelectedPart == null || EditorLogic.fetch.EditorConstructionMode != ConstructionMode.Place;
+
 			if (isDown || simpleMove) {
 				var rot = Quaternion.AngleAxis (yaw, Vector3.up) * Quaternion.AngleAxis (pitch, Vector3.right);
 				var fwd = rot * Vector3.forward;
@@ -411,9 +416,7 @@ namespace WasdEditorCamera
 				acc *= config.acceleration;
 				vel += (acc - config.friction * vel) * Time.deltaTime;
 				var delta = vel * Time.deltaTime;
-
 				EditorLogic.fetch.editorCamera.transform.rotation = rot;
-
 				if (!movePart && EditorLogic.SelectedPart != null && EditorLogic.fetch.EditorConstructionMode == ConstructionMode.Place
 				    && (delta != Vector3.zero || dx != 0 || dy != 0)) {
 					movePart = true;

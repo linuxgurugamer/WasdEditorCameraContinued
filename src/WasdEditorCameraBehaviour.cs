@@ -54,10 +54,12 @@ namespace WasdEditorCamera
 		public void Start ()
 		{
 			Log.SetTitle ("this.GetType ().Name");
+
 			Log.Debug ("Start");
 #if (DEBUG)
 			Log.SetLevel (Log.LEVEL.INFO);
 			Log.Debug ("Start");
+			gui = null;
 #endif
 
 			if (gui == null) {
@@ -103,7 +105,7 @@ namespace WasdEditorCamera
 
 		public void OnDestroy ()
 		{
-			Log.Debug ("OnDestroy");
+			Log.Debug ("OnDestroy, WasdEditorCameraBehaviour.cs");
 			if (OnCleanup != null)
 				OnCleanup ();
 			Log.Debug ("Cleanup complete.");
@@ -127,7 +129,7 @@ namespace WasdEditorCamera
 
 			}
 			if (HighLogic.LoadedScene == GameScenes.EDITOR ) {
-				if (MainMenuGui.WASD_Button == null)
+				if (gui.WASD_Button == null)
 					GameEvents.onGUIApplicationLauncherReady.Add (gui.OnGUIApplicationLauncherReady);
 				gui.OnGUIShowApplicationLauncher ();
 			} else {

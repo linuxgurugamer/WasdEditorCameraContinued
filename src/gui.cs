@@ -24,14 +24,14 @@ namespace WasdEditorCamera
 
 
 
-		public static bool infoDisplayActive = false;
+		public /*static*/ bool infoDisplayActive = false;
 
 		private const int WIDTH = 725;
 		private const int HEIGHT = 550;
 		private Rect bounds = new Rect (Screen.width / 2 - WIDTH / 2, Screen.height / 2 - HEIGHT / 2, WIDTH, HEIGHT);
 		private /* volatile*/ bool visible = false;
 		// Stock APP Toolbar - Stavell
-		public static ApplicationLauncherButton WASD_Button = null;
+		public /*static*/ ApplicationLauncherButton WASD_Button = null;
 		public  bool stockToolBarcreated = false;
 
 		private static Texture2D WASD_button_off = new Texture2D (38, 38, TextureFormat.ARGB32, false);
@@ -82,7 +82,8 @@ namespace WasdEditorCamera
 
 		private void Start ()
 		{
-			DontDestroyOnLoad (this);
+//			DontDestroyOnLoad (this);
+
 			comboBoxList = new GUIContent[87];
 			string[] keys = {"Space", "Keypad0", "Keypad1", "Keypad2", "Keypad3", "Keypad4", "Keypad5", "Keypad6",
 				"Keypad7", "Keypad8", "Keypad9", "KeypadPeriod", "KeypadDivide", "KeypadMultiply", "KeypadMinus",
@@ -195,7 +196,6 @@ namespace WasdEditorCamera
 
 		public void UpdateToolbarStock ()
 		{
-
 			// Create the button in the KSP AppLauncher
 
 			if (!WASD_Texture_Load) {
@@ -229,9 +229,9 @@ namespace WasdEditorCamera
 
 		public void GUIToggle ()
 		{
+
 			stockToolBarcreated = true;
 			infoDisplayActive = !infoDisplayActive;
-			Log.Info ("GUIToggle, infoDisplayActive: " + infoDisplayActive.ToString());
 
 			if (infoDisplayActive) {
 				SetVisible (true);
@@ -246,32 +246,35 @@ namespace WasdEditorCamera
 
 		private void HideToolbarStock ()
 		{
-			ApplicationLauncher.Instance.RemoveModApplication (MainMenuGui.WASD_Button);
-			Destroy (WASD_Button); // Is this necessary?
-			WASD_Button = null;
+			//ApplicationLauncher.Instance.RemoveModApplication (MainMenuGui.WASD_Button);
+			//Destroy (WASD_Button); // Is this necessary?
+			//WASD_Button = null;
 			appLaucherHidden = false;
+		}
+
+		public void OnDestroy()
+		{
+			ApplicationLauncher.Instance.RemoveModApplication (this.WASD_Button);
 		}
 
 		public bool Visible ()
 		{ 
-			return this.visible;
+			return visible;
 		}
 
-		public void SetVisible (bool visible)
+		public void SetVisible (bool newVisible)
 		{
-			Log.Info ("SetVisible   visible: " + visible.ToString ());
-			this.visible = visible;
+			visible = newVisible;
 		}
 
 		public void OnGUI ()
 		{
 			try {
 				if (this.Visible ()) {
-					Log.Info("OnGUI");
 					this.bounds = GUILayout.Window (this.GetInstanceID (), this.bounds, this.Window, TITLE, HighLogic.Skin.window);
 				}
-			} catch (Exception) {
-				//Log.Error ("exception: " + e.Message);
+			} catch (Exception e) {
+				Log.Error ("exception: " + e.Message);
 			}
 		}
 			
@@ -279,12 +282,11 @@ namespace WasdEditorCamera
 		{
 
 			string fname = WASD_CFG_FILE + ".default";
-			Log.Info ("Defaults: " + fname);
 			if (System.IO.File.Exists (fname)) {
 				
 				ConfigNode file = ConfigNode.Load (fname);
 				var root = file.GetNode (WASD_NODENAME);
-				Log.Info ("Loading defaults");
+
 				newconfig.parseConfigNode (root);
 
 				cfgWinData = false;
@@ -296,11 +298,8 @@ namespace WasdEditorCamera
 
 		private void Window (int id)
 		{
-			Log.Info ("Window");
 			if (cfgWinData == false) {
 				cfgWinData = true;
-	
-				Log.Info ("defaultsLoaded: " + defaultsLoaded.ToString ());
 
 				if (!defaultsLoaded)
 					newconfig = WasdEditorCameraBehaviour.config;

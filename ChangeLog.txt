@@ -21,3 +21,5 @@
 	Fixed problem where settings window would only show one time
 0.5.2
 	Fixed NullRefreence when not in editor mode
+0.5.3
+	Fixed problem with Settings window requiring mod to be kept loaded at all times.  This is an update to the 0.5.1 fix

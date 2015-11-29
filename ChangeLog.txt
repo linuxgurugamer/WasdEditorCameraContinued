@@ -15,3 +15,13 @@
 	Removed automatic switch to normal mode when selecting a part
 	Renamed config.cfg in distribution to WASD_Settings.cfg.  This was preventing
 	settings from being saved properly
+0.5.0
+	1.0.5 rebuild
+0.5.1
+	Fixed problem where settings window would only show one time
+0.5.2
+	Fixed NullRefreence when not in editor mode
+0.5.3
+	Fixed problem with Settings window requiring mod to be kept loaded at all times.  This is an update to the 0.5.1 fix
+0.6.0
+	Rebound the look around to middle click on UNIX-like systems so that people can tweak in peace, without the part needing to be in the center

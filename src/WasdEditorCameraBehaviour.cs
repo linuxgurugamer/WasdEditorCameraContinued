@@ -54,10 +54,12 @@ namespace WasdEditorCamera
 		public void Start ()
 		{
 			Log.SetTitle ("this.GetType ().Name");
+
 			Log.Debug ("Start");
 #if (DEBUG)
 			Log.SetLevel (Log.LEVEL.INFO);
 			Log.Debug ("Start");
+			gui = null;
 #endif
 
 			if (gui == null) {
@@ -103,7 +105,7 @@ namespace WasdEditorCamera
 
 		public void OnDestroy ()
 		{
-			Log.Debug ("OnDestroy");
+			Log.Debug ("OnDestroy, WasdEditorCameraBehaviour.cs");
 			if (OnCleanup != null)
 				OnCleanup ();
 			Log.Debug ("Cleanup complete.");
@@ -127,7 +129,7 @@ namespace WasdEditorCamera
 
 			}
 			if (HighLogic.LoadedScene == GameScenes.EDITOR ) {
-				if (MainMenuGui.WASD_Button == null)
+				if (gui.WASD_Button == null)
 					GameEvents.onGUIApplicationLauncherReady.Add (gui.OnGUIApplicationLauncherReady);
 				gui.OnGUIShowApplicationLauncher ();
 			} else {
@@ -192,7 +194,10 @@ namespace WasdEditorCamera
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
 					#else
+
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
+					Log.Info("cam.maxDisplaceX: " + cam.maxDisplaceX.ToString() + "     movementBounds.extents.x: " + movementBounds.extents.x.ToString());
+					Log.Info("cam.maxDisplaceZ: " + cam.maxDisplaceZ.ToString() + "     movementBounds.extents.z: " + movementBounds.extents.z.ToString());
 					cam.maxDisplaceX = movementBounds.extents.x;
 					cam.maxDisplaceZ = movementBounds.extents.z;
 
@@ -201,6 +206,7 @@ namespace WasdEditorCamera
 					cam.camHdg = yaw * Mathf.PI / 180;
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
+				
 					#endif
 				} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
@@ -292,9 +298,13 @@ namespace WasdEditorCamera
 
 		public void LateUpdate ()
 		{
+			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)
+				return;
+
 			if (Input.GetKeyDown (config.keySwitchMode)) {
 				SwitchMode ();
 			}
+
 //			if (selectedPart && EditorLogic.SelectedPart == null)
 //				SwitchMode (false, false);
 			if (!cameraEnabled)
@@ -306,7 +316,14 @@ namespace WasdEditorCamera
 
 			cursorLocker.LockUpdate ();
 
-			bool isDown = Input.GetKey (KeyCode.Mouse1);
+			bool isDown = Input.GetKey (KeyCode.Mouse1);;
+			int p = (int) Environment.OSVersion.Platform;
+			if ((p == 4) || (p == 6) || (p ==128)) {
+				isDown = Input.GetKey (KeyCode.Mouse2);
+			//} else {
+			//	isDown = Input.GetKey (KeyCode.Mouse1);
+			}
+
 			bool goneDown = isDown && !mouseWasDown;
 			bool goneUp = !isDown && mouseWasDown;
 			mouseWasDown = isDown;
@@ -362,6 +379,7 @@ namespace WasdEditorCamera
 
 			// WASD in place mode is part rotation.
 			var simpleMove = EditorLogic.SelectedPart == null || EditorLogic.fetch.EditorConstructionMode != ConstructionMode.Place;
+
 			if (isDown || simpleMove) {
 				var rot = Quaternion.AngleAxis (yaw, Vector3.up) * Quaternion.AngleAxis (pitch, Vector3.right);
 				var fwd = rot * Vector3.forward;
@@ -407,9 +425,7 @@ namespace WasdEditorCamera
 				acc *= config.acceleration;
 				vel += (acc - config.friction * vel) * Time.deltaTime;
 				var delta = vel * Time.deltaTime;
-
 				EditorLogic.fetch.editorCamera.transform.rotation = rot;
-
 				if (!movePart && EditorLogic.SelectedPart != null && EditorLogic.fetch.EditorConstructionMode == ConstructionMode.Place
 				    && (delta != Vector3.zero || dx != 0 || dy != 0)) {
 					movePart = true;

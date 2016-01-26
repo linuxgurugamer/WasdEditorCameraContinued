@@ -30,3 +30,5 @@
 	Fixed settings window spacing for Linux
 0.6.2
 	Reverted right-mouse-click change.  So use the middle mouse to rotate in vab
+0.6.3
+	Added MiniAVC.dll

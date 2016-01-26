@@ -54,6 +54,7 @@ copy README.md %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy ChangeLog.txt %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy WASD_Settings.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy WASD_Settings.cfg.default %HOMEDIR%\install\Gamedata\WasdEditorCamera
+copy MiniAVC.dll  %HOMEDIR%\install\Gamedata\WasdEditorCamera
 pause
 
 %HOMEDRIVE%

@@ -25,3 +25,10 @@
 	Fixed problem with Settings window requiring mod to be kept loaded at all times.  This is an update to the 0.5.1 fix
 0.6.0
 	Rebound the look around to middle click on UNIX-like systems so that people can tweak in peace, without the part needing to be in the center
+0.6.1
+	Fixed right-mouse-click in VAB.SPH for Linux
+	Fixed settings window spacing for Linux
+0.6.2
+	Reverted right-mouse-click change.  So use the middle mouse to rotate in vab
+0.6.3
+	Added MiniAVC.dll

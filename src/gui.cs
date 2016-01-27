@@ -363,7 +363,7 @@ namespace WasdEditorCamera
 			SetVisible (true);
 			GUI.enabled = true;
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.EndHorizontal ();
 		
 			GUILayout.BeginArea (new Rect (10, 50, 375, 500));
@@ -371,7 +371,7 @@ namespace WasdEditorCamera
 			GUILayout.BeginVertical ();
 			DrawTitle ("Keys");
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key forward: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 20, 300, 500));
@@ -380,7 +380,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key back: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 45, 300, 500));
@@ -389,7 +389,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key right: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 70, 300, 500));
@@ -398,7 +398,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key left: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 95, 300, 500));
@@ -408,7 +408,7 @@ namespace WasdEditorCamera
 			GUILayout.EndHorizontal ();
 
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key up: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 120, 300, 500));
@@ -417,7 +417,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key down: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 145, 300, 500));
@@ -426,7 +426,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key run: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 170, 300, 500));
@@ -435,7 +435,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key sneak: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 195, 300, 500));
@@ -444,7 +444,7 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key switch mode: ");
 			#if true
 //			GUILayout.BeginArea (new Rect (10, 220, 300, 500));
@@ -453,14 +453,14 @@ namespace WasdEditorCamera
 			#endif
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("");
 			GUILayout.EndHorizontal ();
 
 
 			DrawTitle ("VAB", true);
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Position: ");
 			GUILayout.FlexibleSpace ();
 			strVabInitPosX = GUILayout.TextField (strVabInitPosX, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
@@ -468,19 +468,19 @@ namespace WasdEditorCamera
 			strVabInitPosZ = GUILayout.TextField (strVabInitPosZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Pitch: ");
 			GUILayout.FlexibleSpace ();
 			strVabInitPitch = GUILayout.TextField (strVabInitPitch, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Yaw: ");
 			GUILayout.FlexibleSpace ();
 			strVabInitYaw = GUILayout.TextField (strVabInitYaw, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Bounds min: ");
 			GUILayout.FlexibleSpace ();
 			// x, y, z
@@ -489,7 +489,7 @@ namespace WasdEditorCamera
 			strVabBoundsMinZ = GUILayout.TextField (strVabBoundsMinZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Bounds max: ");
 			GUILayout.FlexibleSpace ();
 			// x, y, z
@@ -498,11 +498,11 @@ namespace WasdEditorCamera
 			strVabBoundsMaxZ = GUILayout.TextField (strVabBoundsMaxZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("");
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			if (GUILayout.Button ("Defaults", GUILayout.Width (125.0f))) {
 				bool b = SetDefaults ();
 				return;
@@ -533,78 +533,78 @@ namespace WasdEditorCamera
 			GUILayout.BeginVertical ();
 			DrawTitle ("Misc");
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Exp Editor Ext. Compatibility: ");
 			GUILayout.FlexibleSpace ();
 			newconfig.enableExperimentalEditorExtensionsCompatibility = 
 				GUILayout.Toggle (newconfig.enableExperimentalEditorExtensionsCompatibility, "");
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Default Camera: ");
 			GUILayout.FlexibleSpace ();
 			newconfig.defaultCamera = 
 				GUILayout.Toggle (newconfig.defaultCamera, "");
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Mouse wheel active: ");
 			GUILayout.FlexibleSpace ();
 			newconfig.mouseWheelActive = 
 				GUILayout.Toggle (newconfig.mouseWheelActive, "");
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Enforce bounds: ");
 			GUILayout.FlexibleSpace ();
 			newconfig.enforceBounds = 
 				GUILayout.Toggle (newconfig.enforceBounds, "");
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Sensitivity: ");
 			GUILayout.FlexibleSpace ();
 			strsensitivity = GUILayout.TextField (strsensitivity, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Acceleration: ");
 			GUILayout.FlexibleSpace ();
 			stracceleration = GUILayout.TextField (stracceleration, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Mouse wheel acceleration: ");
 			GUILayout.FlexibleSpace ();
 			strmouseWheelAcceleration = GUILayout.TextField (strmouseWheelAcceleration, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Friction: ");
 			GUILayout.FlexibleSpace ();
 			strfriction = GUILayout.TextField (strfriction, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Run multiplier: ");
 			GUILayout.FlexibleSpace ();
 			strrunMultiplier = GUILayout.TextField (strrunMultiplier, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Sneak multiplier: ");
 			GUILayout.FlexibleSpace ();
 			strsneakMultiplier = GUILayout.TextField (strsneakMultiplier, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			//GUILayout.BeginHorizontal ();
+			//GUILayout.BeginHorizontal (GUILayout.Height(20));
 			//GUILayout.Label ("");
 			//GUILayout.EndHorizontal ();
 
 			DrawTitle ("SPH", true);
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Position: ");
 			GUILayout.FlexibleSpace ();
 			strSphInitPosX = GUILayout.TextField (strSphInitPosX, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
@@ -612,19 +612,19 @@ namespace WasdEditorCamera
 			strSphInitPosZ = GUILayout.TextField (strSphInitPosZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Pitch: ");
 			GUILayout.FlexibleSpace ();
 			strSphInitPitch = GUILayout.TextField (strSphInitPitch, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Initial Yaw: ");
 			GUILayout.FlexibleSpace ();
 			strSphInitYaw = GUILayout.TextField (strSphInitYaw, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Bounds min: ");
 			GUILayout.FlexibleSpace ();
 			// x, y, z
@@ -633,7 +633,7 @@ namespace WasdEditorCamera
 			strSphBoundsMinZ = GUILayout.TextField (strSphBoundsMinZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Bounds max: ");
 			GUILayout.FlexibleSpace ();
 			// x, y, z
@@ -642,12 +642,12 @@ namespace WasdEditorCamera
 			strSphBoundsMaxZ = GUILayout.TextField (strSphBoundsMaxZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("");
 			GUILayout.EndHorizontal ();
 
 
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 
 			if (GUILayout.Button ("Save", GUILayout.Width (125.0f))) {
 				writeConfig (newconfig);
@@ -809,7 +809,7 @@ namespace WasdEditorCamera
 
 		private void DrawTitle (String text, bool xyz = false)
 		{
-			GUILayout.BeginHorizontal ();
+			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label (text, HighLogic.Skin.label);
 			GUILayout.FlexibleSpace ();
 			if (xyz) {

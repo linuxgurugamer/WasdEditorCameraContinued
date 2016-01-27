@@ -43,10 +43,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Assembly-CSharp">
-      <HintPath>R:\KSP_1.0.4_Dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>R:\KSP_1.0.4_Dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\UnityEngine.UI.dll</HintPath>

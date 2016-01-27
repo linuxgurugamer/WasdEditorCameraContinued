@@ -316,9 +316,9 @@ namespace WasdEditorCamera
 
 			cursorLocker.LockUpdate ();
 
-			bool isDown = Input.GetKey (KeyCode.Mouse1);;
+			bool isDown = Input.GetKey (KeyCode.Mouse1);
 			int p = (int) Environment.OSVersion.Platform;
-			if ((p == 4) || (p == 6) || (p ==128)) {
+			if ( (p == 4) || (p == 6) || (p ==128)) {
 				isDown = Input.GetKey (KeyCode.Mouse2);
 			//} else {
 			//	isDown = Input.GetKey (KeyCode.Mouse1);

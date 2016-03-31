@@ -32,3 +32,7 @@
 	Reverted right-mouse-click change.  So use the middle mouse to rotate in vab
 0.6.3
 	Added MiniAVC.dll
+0.6.4
+	Fixed bug where, if you have a part selected while in normal mode, and while selected
+	switch to WASD mode, strange things would happen.  Fix was to not allow mode changes while
+	a part is selected.

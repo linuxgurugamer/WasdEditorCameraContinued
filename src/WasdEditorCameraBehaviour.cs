@@ -19,7 +19,7 @@ namespace WasdEditorCamera
 
 		private CleanupFn OnCleanup;
 
-		private KerbalFSM editorFSM;
+		//private KerbalFSM editorFSM;
 		private CursorLocker cursorLocker;
 		private Bounds movementBounds;
 		private Vector3 partOffset;
@@ -48,6 +48,7 @@ namespace WasdEditorCamera
 			Log.Debug ("Loading config...");
 			var root = GameDatabase.Instance.GetConfigs ("WASDEDITORCAMERA").First ().config;
 			config.parseConfigNode (root);
+			Log.Info ("end of readConfig");
 		}
 
 
@@ -58,7 +59,7 @@ namespace WasdEditorCamera
 			Log.Debug ("Start");
 #if (DEBUG)
 			Log.SetLevel (Log.LEVEL.INFO);
-			Log.Debug ("Start");
+			Log.Debug ("Start 2");
 			gui = null;
 #endif
 
@@ -71,9 +72,11 @@ namespace WasdEditorCamera
 
 			readConfig ();
 
-			KspIssue3838Fix.ApplyFix (config.enableExperimentalEditorExtensionsCompatibility);
+			// KspIssue3838Fix.ApplyFix (config.enableExperimentalEditorExtensionsCompatibility);
+			Log.Info("Before Refl.GetValue Editorlogic.fetch");
 
-			editorFSM = (KerbalFSM)Refl.GetValue (EditorLogic.fetch, "\u0001");
+			//editorFSM = (KerbalFSM)Refl.GetValue (EditorLogic.fetch, "\u0001");
+			//Log.Info ("editorFSM: " + editorFSM.ToString ());
 
 			cursorLocker = Application.platform == RuntimePlatform.WindowsPlayer ? new WinCursorLocker () : (CursorLocker)new UnityLocker ();
 
@@ -147,6 +150,12 @@ namespace WasdEditorCamera
 
 		private void SwitchMode (bool showMessage = true, bool partSelectedTmp = false)
 		{
+			if (EditorLogic.SelectedPart != null) {
+				if (showMessage)
+					ScreenMessages.PostScreenMessage ("Can't change modes while part is selected", MESSAGE_TEMPLATE);
+				return;
+			}
+
 			cameraEnabled = !cameraEnabled;
 
 			selectedPart = partSelectedTmp; 
@@ -154,7 +163,7 @@ namespace WasdEditorCamera
 			if (gui) gui.set_WASD_Button_active (cameraEnabled);
 			if (!cameraEnabled  || EditorLogic.SelectedPart != null ) {
 				cursorLocker.UnlockCursor ();
-				Screen.showCursor = true;
+//				Screen.showCursor = true;
 				mouseWasDown = false;
 				movePart = false;
 				EditorBounds.Instance.constructionBounds = movementBounds;
@@ -331,7 +340,7 @@ namespace WasdEditorCamera
 			bool shiftIsDown = Input.GetKey (KeyCode.LeftShift);
 
 			var isTweaking = (Input.GetMouseButton (0)
-			                 && (editorFSM.currentStateName == "st_offset_tweak" || editorFSM.currentStateName == "st_rotate_tweak"));
+				&& (EditorLogic.fetch.currentStateName == "st_offset_tweak" || EditorLogic.fetch.currentStateName == "st_rotate_tweak"));
 			if (isTweaking)
 				return;
 
@@ -355,7 +364,7 @@ namespace WasdEditorCamera
 					partOffset = EditorLogic.fetch.editorCamera.transform.InverseTransformVector (partOffset);
 				}
 
-				Screen.showCursor = false;
+//				Screen.showCursor = false;
 				cursorLocker.PrepareLock ();
 				cursorLocker.LockCursor ();
 			}
@@ -363,7 +372,7 @@ namespace WasdEditorCamera
 			if (goneUp) {
 				InputLockManager.RemoveControlLock (this.GetType ().Name);
 
-				Screen.showCursor = true;
+//				Screen.showCursor = true;
 				cursorLocker.UnlockCursor ();
 
 				if (movePart) {
@@ -498,12 +507,14 @@ namespace WasdEditorCamera
 
 		public void LockCursor ()
 		{
-			Screen.lockCursor = true;
+			Cursor.lockState = CursorLockMode.Locked;
+//			Screen.lockCursor = true;
 		}
 
 		public void UnlockCursor ()
 		{
-			Screen.lockCursor = false;
+			Cursor.lockState = CursorLockMode.None;
+//			Screen.lockCursor = false;
 		}
 	}
 
@@ -563,7 +574,8 @@ namespace WasdEditorCamera
 	{
 		public static FieldInfo GetField (object obj, string name)
 		{
-			var f = obj.GetType ().GetField (name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+			Log.Info ("obj: " + obj.ToString () + "    name: " + name);
+			var f = obj.GetType ().GetField (name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
 			if (f == null)
 				throw new Exception ("No such field: " + obj.GetType () + "#" + name);
 			return f;
@@ -571,6 +583,7 @@ namespace WasdEditorCamera
 
 		public static object GetValue (object obj, string name)
 		{
+			Log.Info ("GetValue");
 			return GetField (obj, name).GetValue (obj);
 		}
 
@@ -593,6 +606,7 @@ namespace WasdEditorCamera
 		}
 	}
 
+	#if false
 	/**
 	 * What? How does that fix anything you ask? Magic! Well, here the best explaination I came up with:
 	 * 
@@ -639,4 +653,5 @@ namespace WasdEditorCamera
 			}
 		}
 	}
+	#endif
 }

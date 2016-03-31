@@ -22,6 +22,8 @@
       <CustomCommands>
         <Command type="AfterBuild" command="xcopy ${TargetFile}  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Plugins\  /Y" externalConsole="True" />
         <Command type="AfterBuild" command="xcopy ${ProjectDir}\src\Textures\*  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Textures /Y" externalConsole="True" />
+        <Command type="AfterBuild" command="xcopy ${ProjectDir}\WASD_Settings.cfg R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera /y" externalConsole="True" />
+        <Command type="AfterBuild" command="xcopy ${ProjectDir}\WASD_Settings.cfg.default R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera /y" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -41,15 +43,29 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Assembly-CSharp">
-      <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\System.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>R:\KSP_1.0.5_Dev\KSP_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Vectrosity">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\Vectrosity.dll</HintPath>
+    </Reference>
+    <Reference Include="KSPUtil">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\KSPUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="KSPCore">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\KSPCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -73,7 +73,6 @@ namespace WasdEditorCamera
 			readConfig ();
 
 			// KspIssue3838Fix.ApplyFix (config.enableExperimentalEditorExtensionsCompatibility);
-			Log.Info("Before Refl.GetValue Editorlogic.fetch");
 
 			//editorFSM = (KerbalFSM)Refl.GetValue (EditorLogic.fetch, "\u0001");
 			//Log.Info ("editorFSM: " + editorFSM.ToString ());
@@ -200,7 +199,7 @@ namespace WasdEditorCamera
 					cam.camPitch = pitch * Mathf.PI / 180;
 					cam.camHdg = rot.eulerAngles.y * Mathf.PI / 180;
 
-					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
+//					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
 					#else
 
@@ -225,12 +224,12 @@ namespace WasdEditorCamera
 					cam.PlaceCamera (point, distance);
 					cam.camPitch = pitch * Mathf.PI / 180;
 					cam.camHdg = yaw * Mathf.PI / 180;
-					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
+//					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
 				}
 
 				if (EditorLogic.SelectedPart != null && EditorLogic.fetch.EditorConstructionMode == ConstructionMode.Place) {
-					UpdateDragPlane ();
+//					UpdateDragPlane ();
 				}
 				if (showMessage)
 					ScreenMessages.PostScreenMessage ("Switched to stock camera", MESSAGE_TEMPLATE);
@@ -247,7 +246,7 @@ namespace WasdEditorCamera
 					ScreenMessages.PostScreenMessage ("Switched to wasd camera", MESSAGE_TEMPLATE);
 			}
 		}
-
+#if false
 		private IEnumerator<object> TurnSmoothingOffForOneFrame (object camBehaviour)
 		{
 			var oldValue = (float)Refl.GetValue (camBehaviour, "sharpness");
@@ -255,7 +254,7 @@ namespace WasdEditorCamera
 			yield return null;
 			Refl.SetValue (camBehaviour, "sharpness", oldValue);
 		}
-
+#endif
 		private bool GetNewFocalPoint (out Vector3 point, out float distance)
 		{
 			Log.Info ("GetNewFocalPoint");
@@ -296,7 +295,7 @@ namespace WasdEditorCamera
 			}
 			vel = Vector3.zero;
 		}
-
+#if false
 		private void UpdateDragPlane ()
 		{
 			Refl.Invoke (EditorLogic.fetch, "CenterDragPlane", EditorLogic.SelectedPart.transform.position + EditorLogic.fetch.selPartGrabOffset);
@@ -304,7 +303,7 @@ namespace WasdEditorCamera
 			Refl.Invoke (EditorLogic.fetch, "dragOverPlane", args);
 			EditorLogic.SelectedPart.transform.position = (Vector3)args [0];
 		}
-
+#endif
 		public void LateUpdate ()
 		{
 			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)
@@ -377,7 +376,7 @@ namespace WasdEditorCamera
 
 				if (movePart) {
 					EditorBounds.Instance.constructionBounds = movementBounds;
-					UpdateDragPlane ();
+//					UpdateDragPlane ();
 				}
 				movePart = false;
 			}
@@ -457,7 +456,7 @@ namespace WasdEditorCamera
 					}
 
 					if (movePart) {
-						Refl.Invoke (EditorLogic.fetch, "displayAttachNodeIcons", false, false, false);
+//						Refl.Invoke (EditorLogic.fetch, "displayAttachNodeIcons", false, false, false);
 
 						var offset = EditorLogic.fetch.editorCamera.transform.TransformPoint (partOffset);
 						EditorLogic.SelectedPart.transform.position = offset - EditorLogic.fetch.selPartGrabOffset;
@@ -570,6 +569,7 @@ namespace WasdEditorCamera
 		}
 	}
 
+	#if false
 	public static class Refl
 	{
 		public static FieldInfo GetField (object obj, string name)
@@ -605,6 +605,7 @@ namespace WasdEditorCamera
 			return GetMethod (obj, name).Invoke (obj, args);
 		}
 	}
+	#endif
 
 	#if false
 	/**

@@ -36,8 +36,8 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="xcopy ${TargetFile}  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Plugins\  /Y" externalConsole="True" />
-        <Command type="AfterBuild" command="xcopy ${ProjectDir}\src\Textures\*  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Textures /Y" externalConsole="True" />
+        <Command type="AfterBuild" command="xcopy ${TargetFile}  R:\KSP_1.1.2_dev\GameData\WasdEditorCamera\Plugins\  /Y" externalConsole="True" />
+        <Command type="AfterBuild" command="xcopy ${ProjectDir}\src\Textures\*  R:\KSP_1.1.2_dev\GameData\WasdEditorCamera\Textures /Y" externalConsole="True" />
         <Command type="AfterBuild" command="buildRelease.bat" externalConsole="True" pauseExternalConsole="True" />
       </CustomCommands>
     </CustomCommands>

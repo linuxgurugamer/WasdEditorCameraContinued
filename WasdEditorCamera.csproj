@@ -20,10 +20,7 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="xcopy ${TargetFile}  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Plugins\  /Y" externalConsole="True" />
-        <Command type="AfterBuild" command="xcopy ${ProjectDir}\src\Textures\*  R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera\Textures /Y" externalConsole="True" />
-        <Command type="AfterBuild" command="xcopy ${ProjectDir}\WASD_Settings.cfg R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera /y" externalConsole="True" />
-        <Command type="AfterBuild" command="xcopy ${ProjectDir}\WASD_Settings.cfg.default R:\KSP_1.0.5_Dev\GameData\WasdEditorCamera /y" externalConsole="True" />
+        <Command type="AfterBuild" command="deploy.bat" externalConsole="True" pauseExternalConsole="True" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -83,6 +80,7 @@
     <None Include="ChangeLog.txt" />
     <None Include="License.txt" />
     <None Include="README.md" />
+    <None Include="deploy.bat" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />

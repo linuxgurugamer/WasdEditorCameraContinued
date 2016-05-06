@@ -651,6 +651,7 @@ namespace WasdEditorCamera
 
 			if (GUILayout.Button ("Save", GUILayout.Width (125.0f))) {
 				writeConfig (newconfig);
+				//WasdEditorCameraBehaviour.config.setConfig (newconfig);
 				GUIToggle ();
 			}
 
@@ -902,6 +903,7 @@ namespace WasdEditorCamera
 			root.Save (WASD_CFG_FILE);
 
 			WasdEditorCameraBehaviour.setConfig (root);
+
 		}
 
 

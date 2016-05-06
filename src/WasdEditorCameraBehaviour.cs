@@ -21,7 +21,7 @@ namespace WasdEditorCamera
 
 		//private KerbalFSM editorFSM;
 		private CursorLocker cursorLocker;
-		private Bounds movementBounds;
+		private static Bounds movementBounds;
 		private Vector3 partOffset;
 		private bool mouseWasDown;
 		private bool movePart;
@@ -40,17 +40,31 @@ namespace WasdEditorCamera
 		public static void setConfig(ConfigNode config)
 		{
 			GameDatabase.Instance.GetConfigs ("WASDEDITORCAMERA").First ().config = config;
+			checkMovementBounds ();
 		}
 
 
-		private void readConfig ()
+		static void readConfig ()
 		{
 			Log.Debug ("Loading config...");
 			var root = GameDatabase.Instance.GetConfigs ("WASDEDITORCAMERA").First ().config;
+			Log.Info ("Before parseConfigNode");
 			config.parseConfigNode (root);
 			Log.Info ("end of readConfig");
 		}
 
+		public static void checkMovementBounds()
+		{
+			movementBounds = new Bounds ();
+			if (EditorDriver.editorFacility == EditorFacility.VAB) {
+				movementBounds = config.vab.bounds;
+			} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
+				movementBounds = config.sph.bounds;
+			}
+			if (!config.enforceBounds) {
+				movementBounds = new Bounds (Vector3.zero, Vector3.one * float.MaxValue);
+			}
+		}
 
 		public void Start ()
 		{
@@ -79,15 +93,8 @@ namespace WasdEditorCamera
 
 			cursorLocker = Application.platform == RuntimePlatform.WindowsPlayer ? new WinCursorLocker () : (CursorLocker)new UnityLocker ();
 
-			movementBounds = new Bounds ();
-			if (EditorDriver.editorFacility == EditorFacility.VAB) {
-				movementBounds = config.vab.bounds;
-			} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
-				movementBounds = config.sph.bounds;
-			}
-			if (!config.enforceBounds) {
-				movementBounds = new Bounds (Vector3.zero, Vector3.one * float.MaxValue);
-			}
+			checkMovementBounds ();
+
 
 			var restartListener = new EventVoid.OnEvent (this.OnEditorRestart);
 			GameEvents.onEditorRestart.Add (restartListener);

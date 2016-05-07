@@ -39,12 +39,41 @@ namespace WasdEditorCamera
 			public float initialYaw;
 		}
 
+		#if false
+		public void setConfig(Config cfg)
+		{
+			keyForward = cfg.keyForward;
+			keyBack = cfg.keyBack;
+			keyRight = cfg.keyRight;
+			keyLeft = cfg.keyLeft;
+			keyUp = cfg.keyUp;
+			keyDown = cfg.keyDown;
+			keyRun = cfg.keyRun;
+			keySneak = cfg.keySneak;
+			keySwitchMode = cfg.keySwitchMode;
 
+			enableExperimentalEditorExtensionsCompatibility = cfg.enableExperimentalEditorExtensionsCompatibility;
+			defaultCamera = cfg.defaultCamera;
+			enforceBounds = cfg.enforceBounds;
+			mouseWheelActive = cfg.mouseWheelActive;
 
-		public   void parseConfigNode (ConfigNode root)
+			sensitivity = cfg.sensitivity;
+			acceleration = cfg.acceleration;
+			friction = cfg.friction;
+			runMultiplier = cfg.runMultiplier;
+			sneakMultiplier = cfg.sneakMultiplier;
+			mouseWheelAcceleration = cfg.mouseWheelAcceleration;
+
+			vab = cfg.vab;
+			sph = cfg.sph;
+
+		}
+		#endif
+
+		public void parseConfigNode (ConfigNode root)
 		{
 			//Config config = new Config ();
-
+			Log.Info("parseConfigNode");
 			try {
 				enableExperimentalEditorExtensionsCompatibility = Boolean.Parse (root.GetValue ("enableExperimentalEditorExtensionsCompatibility"));
 			} catch {
@@ -59,6 +88,7 @@ namespace WasdEditorCamera
 			}
 			try {
 				enforceBounds = Boolean.Parse (root.GetValue ("enforceBounds"));
+				Log.Info("enforceBounds: " + enforceBounds.ToString());
 			} catch {
 			}
 

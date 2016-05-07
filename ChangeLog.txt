@@ -32,3 +32,13 @@
 	Reverted right-mouse-click change.  So use the middle mouse to rotate in vab
 0.6.3
 	Added MiniAVC.dll
+0.6.4
+	Fixed bug where, if you have a part selected while in normal mode, and while selected
+	switch to WASD mode, strange things would happen.  Fix was to not allow mode changes while
+	a part is selected.
+0.6.5
+	Minor changes for 1.1 This version will NOT run on 1.0.5
+0.6.6
+	More 1.1 changes
+0.6.7
+	Fixed bug where changing the toggle for the Enforce Bounds was not being seen until the editor was exited and reentered

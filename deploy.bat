@@ -1,6 +1,6 @@
 ﻿rem line must not be used
 
-set H=R:\KSP_1.1.3_dev
+set H=R:\KSP_1.1.4_dev
 echo %H%
 
 set d=%H%

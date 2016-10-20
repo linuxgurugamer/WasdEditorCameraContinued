@@ -19,14 +19,18 @@ set d=%H%\Gamedata\WasdEditorCamera\Plugins
 if exist %d% goto four
 mkdir %d%
 :four
-set d=%H%\Gamedata\WasdEditorCamera\Textures
+set d=%H%\Gamedata\WasdEditorCamera\PluginData
 if exist %d% goto five
 mkdir %d%
 :five
+set d=%H%\Gamedata\WasdEditorCamera\Textures
+if exist %d% goto six
+mkdir %d%
+:six
 
 
 
 xcopy bin\Debug\WasdEditorCamera.dll  %H%\GameData\WasdEditorCamera\Plugins\  /Y
 xcopy src\Textures\*  %H%\GameData\WasdEditorCamera\Textures /Y
-xcopy WASD_Settings.cfg %H%\GameData\WasdEditorCamera /y
-xcopy WASD_Settings.cfg.default %H%\GameData\WasdEditorCamera /y
+xcopy WASD_Settings.cfg %H%\GameData\WasdEditorCamera\PluginData /y
+rem xcopy WASD_Settings.cfg.default %H%\GameData\WasdEditorCamera\PluginData /y

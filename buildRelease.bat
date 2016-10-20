@@ -41,19 +41,24 @@ set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\Plugins
 if exist %d% goto four
 mkdir %d%
 :four
-set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures
+set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
 if exist %d% goto five
 mkdir %d%
 :five
-del %HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures\*.*
+set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures
+if exist %d% goto six
+mkdir %d%
+:six
+
+del /y %HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures\*.*
 
 xcopy src\Textures\WASD*.png   %HOMEDIR%\install\GameData\WasdEditorCamera\Textures /Y
 copy bin\Release\WasdEditorCamera.dll %HOMEDIR%\install\Gamedata\WasdEditorCamera\Plugins
 copy  WASD.version %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy README.md %HOMEDIR%\install\Gamedata\WasdEditorCamera
 copy ChangeLog.txt %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy WASD_Settings.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy WASD_Settings.cfg.default %HOMEDIR%\install\Gamedata\WasdEditorCamera
+copy WASD_Settings.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
+rem copy WASD_Settings.cfg.default %HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
 copy MiniAVC.dll  %HOMEDIR%\install\Gamedata\WasdEditorCamera
 pause
 

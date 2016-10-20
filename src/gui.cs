@@ -19,8 +19,8 @@ namespace WasdEditorCamera
 		private static  String WASD_BASE_FOLDER = CONFIG_BASE_FOLDER + "WasdEditorCamera/";
 		private static string TEXTURE_DIR = "WasdEditorCamera/" + "Textures/";
 
-		private static String WASD_NODENAME = "WASDEDITORCAMERA";
-		private static String WASD_CFG_FILE = WASD_BASE_FOLDER + "WASD_Settings.cfg";
+		public static String WASD_NODENAME = "WASDEDITORCAMERA";
+		public static String WASD_CFG_FILE = WASD_BASE_FOLDER + "PluginData/WASD_Settings.cfg";
 
 
 
@@ -278,25 +278,32 @@ namespace WasdEditorCamera
 			}
 		}
 			
-		bool SetDefaults ()
-		{
 
-			string fname = WASD_CFG_FILE + ".default";
-			if (System.IO.File.Exists (fname)) {
-				
-				ConfigNode file = ConfigNode.Load (fname);
-				var root = file.GetNode (WASD_NODENAME);
+        bool SetDefaults()
+        {
+            newconfig.initConfig();
+            cfgWinData = false;
+            defaultsLoaded = true;
+            return true;
+#if false
+            string fname = WASD_CFG_FILE + ".default";
+            if (System.IO.File.Exists(fname))
+            {
 
-				newconfig.parseConfigNode (root);
+                ConfigNode file = ConfigNode.Load(fname);
+                var root = file.GetNode(WASD_NODENAME);
 
-				cfgWinData = false;
-				defaultsLoaded = true;
-				return true;
-			}
-			return false;
-		}
+                newconfig.parseConfigNode(root);
 
-		private void Window (int id)
+                cfgWinData = false;
+                defaultsLoaded = true;
+                return true;
+            }
+            return false;
+#endif
+        }
+
+        private void Window (int id)
 		{
 			if (cfgWinData == false) {
 				cfgWinData = true;
@@ -373,84 +380,84 @@ namespace WasdEditorCamera
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key forward: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 20, 300, 500));
 //			strkeyForward = comboBoxList[cbkeyForward.List (new Rect (125, 5, 150, 20), strkeyForward, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key back: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 45, 300, 500));
 //			strkeyBack = comboBoxList[cbkeyBack.List (new Rect (125, 5, 150, 20), strkeyBack, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key right: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 70, 300, 500));
 //			strkeyRight = comboBoxList[cbkeyRight.List (new Rect (125, 5, 150, 20), strkeyRight, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key left: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 95, 300, 500));
 //			strkeyLeft = comboBoxList[cbkeyLeft.List (new Rect (125, 5, 150, 20), strkeyLeft, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key up: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 120, 300, 500));
 //			strkeyUp = comboBoxList[cbkeyUp.List (new Rect (125, 5, 150, 20), strkeyUp, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key down: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 145, 300, 500));
 //			strkeyDown = comboBoxList[cbkeyDown.List (new Rect (125, 5, 150, 20), strkeyDown, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key run: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 170, 300, 500));
 //			strkeyRun = comboBoxList[cbkeyRun.List (new Rect (125, 5, 150, 20), strkeyRun, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key sneak: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 195, 300, 500));
 //			strkeySneak = comboBoxList[cbkeySneak.List (new Rect (125, 5, 150, 20), strkeySneak, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
 			GUILayout.Label ("Key switch mode: ");
-			#if true
+#if true
 //			GUILayout.BeginArea (new Rect (10, 220, 300, 500));
 //			strkeySwitchMode = comboBoxList[cbkeySwitchMode.List (new Rect (125, 5, 150, 20), strkeySwitchMode, comboBoxList, listStyle)].text;
 //			GUILayout.EndArea ();
-			#endif
+#endif
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
@@ -515,7 +522,7 @@ namespace WasdEditorCamera
 			/// These have to be here so that when they are clicked on, they will overwrite the other controls in the column
 			/// 
 
-			#if true
+#if true
 			strkeyForward = comboBoxList [cbkeyForward.List (new Rect (135,25,150, 20), strkeyForward, comboBoxList, listStyle)].text;
 			strkeyBack = comboBoxList [cbkeyBack.List (new Rect (135, 50, 150, 20), strkeyBack, comboBoxList, listStyle)].text;
 			strkeyRight = comboBoxList [cbkeyRight.List (new Rect (135, 75, 150, 20), strkeyRight, comboBoxList, listStyle)].text;
@@ -525,7 +532,7 @@ namespace WasdEditorCamera
 			strkeyRun = comboBoxList [cbkeyRun.List (new Rect (135, 175, 150, 20), strkeyRun, comboBoxList, listStyle)].text;
 			strkeySneak = comboBoxList [cbkeySneak.List (new Rect (135, 200, 150, 20), strkeySneak, comboBoxList, listStyle)].text;
 			strkeySwitchMode = comboBoxList [cbkeySwitchMode.List (new Rect (135, 225, 150, 20), strkeySwitchMode, comboBoxList, listStyle)].text;
-			#endif
+#endif
 			GUILayout.EndVertical ();
 			GUILayout.EndArea ();
 

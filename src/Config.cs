@@ -70,7 +70,56 @@ namespace WasdEditorCamera
 		}
 		#endif
 
-		public void parseConfigNode (ConfigNode root)
+        public void initConfig()
+        {
+            keyForward = KeyCode.W;
+            keyBack = KeyCode.S;
+            keyRight = KeyCode.D;
+            keyLeft = KeyCode.A;
+            keyUp = KeyCode.E;
+            keyDown = KeyCode.Q;
+            keyRun = KeyCode.Space;
+            keySneak = KeyCode.LeftControl;
+            keySwitchMode = KeyCode.Alpha5;
+
+            enableExperimentalEditorExtensionsCompatibility = true;
+            defaultCamera = true;
+            enforceBounds = true;
+            mouseWheelActive = true;
+
+            sensitivity = 14;
+            acceleration = 150;
+            friction = 10;
+            runMultiplier = 2;
+            sneakMultiplier = 0.3f;
+            mouseWheelAcceleration = 1.75f;
+
+            //vab = cfg.vab;
+            vab = new EditorConfig();
+            sph = new EditorConfig();
+
+            vab.initialPosition = new Vector3(-6.1f,17.7f, -1.9f);
+            vab.initialPitch = 16.386f;
+            vab.initialYaw = 72.536f;
+            Vector3 min = new Vector3(-28.8f, 0.8f, -22.5f);
+            Vector3 max = new Vector3(29.7f, 70f, 22.7f);
+            var result = new Bounds();
+            result.SetMinMax(min, max);
+            vab.bounds = result;
+
+            // sph = cfg.sph;
+            sph.initialPosition = new Vector3(-8.6f, 14.4f,  2.7f);
+            sph.initialPitch = 14.080f;
+            sph.initialYaw = 120.824f;
+
+            min = new Vector3(-43.2f, 1.4f, -56f);
+            max = new Vector3(43.0f, 30.3f, 56.0f);
+            result = new Bounds();
+            result.SetMinMax(min, max);
+            sph.bounds = result;
+        }
+        
+        public void parseConfigNode (ConfigNode root)
 		{
 			//Config config = new Config ();
 			Log.Info("parseConfigNode");

@@ -37,20 +37,40 @@ namespace WasdEditorCamera
 
 		public static Config config = new Config() ;
 
-		public static void setConfig(ConfigNode config)
+        static bool ReadConfigFile()
+        {
+            string fname = MainMenuGui.WASD_CFG_FILE;
+            if (System.IO.File.Exists(fname))
+            {
+
+                ConfigNode file = ConfigNode.Load(fname);
+                var root = file.GetNode(MainMenuGui.WASD_NODENAME);
+
+                config.parseConfigNode(root);
+                return true;
+            }
+            return false;
+        }
+
+        public static void setConfig(ConfigNode config)
 		{
-			GameDatabase.Instance.GetConfigs ("WASDEDITORCAMERA").First ().config = config;
+			//GameDatabase.Instance.GetConfigs (MainMenuGui.WASD_NODENAME).First ().config = config;
 			checkMovementBounds ();
 		}
 
 
 		static void readConfig ()
 		{
+
 			Log.Debug ("Loading config...");
-			var root = GameDatabase.Instance.GetConfigs ("WASDEDITORCAMERA").First ().config;
-			Log.Info ("Before parseConfigNode");
-			config.parseConfigNode (root);
-			Log.Info ("end of readConfig");
+            if (!ReadConfigFile())
+            {
+                config.initConfig();
+            }
+			//var root = GameDatabase.Instance.GetConfigs (MainMenuGui.WASD_NODENAME).First ().config;
+			//Log.Info ("Before parseConfigNode");
+			//config.parseConfigNode (root);
+			//Log.Info ("end of readConfig");
 		}
 
 		public static void checkMovementBounds()

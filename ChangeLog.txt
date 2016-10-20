@@ -42,3 +42,5 @@
 	More 1.1 changes
 0.6.7
 	Fixed bug where changing the toggle for the Enforce Bounds was not being seen until the editor was exited and reentered
+0.6.8
+	Redid config storage, moved cfg file into PluginData

@@ -8,62 +8,76 @@ set RELEASEDIR=d:\Users\jbb\release
 set ZIP="c:\Program Files\7-zip\7z.exe"
 echo Default homedir: %DEFHOMEDIR%
 
-set /p HOMEDIR= "Enter Home directory, or <CR> for default: "
+rem set /p HOMEDIR= "Enter Home directory, or <CR> for default: "
 
 if "%HOMEDIR%" == "" (
 set HOMEDIR=%DEFHOMEDIR%
 )
-echo %HOMEDIR%
+rem echo %HOMEDIR%
 
 SET _test=%HOMEDIR:~1,1%
 if "%_test%" == ":" (
 set HOMEDRIVE=%HOMEDIR:~0,2%
 )
 
-type WASD.version
-set /p VERSION= "Enter version: "
+
+set VERSIONFILE=WASD.version
+rem The following requires the JQ program, available here: https://stedolan.github.io/jq/download/
+c:\local\jq-win64  ".VERSION.MAJOR" %VERSIONFILE% >tmpfile
+set /P major=<tmpfile
+
+c:\local\jq-win64  ".VERSION.MINOR"  %VERSIONFILE% >tmpfile
+set /P minor=<tmpfile
+
+c:\local\jq-win64  ".VERSION.PATCH"  %VERSIONFILE% >tmpfile
+set /P patch=<tmpfile
+
+c:\local\jq-win64  ".VERSION.BUILD"  %VERSIONFILE% >tmpfile
+set /P build=<tmpfile
+del tmpfile
+set VERSION=%major%.%minor%.%patch%
+if "%build%" NEQ "0"  set VERSION=%VERSION%.%build%
+
+echo %VERSION%
 
 
-
-set d=%HOMEDIR\install
+set d=GameData
 if exist %d% goto one
 mkdir %d%
 :one
-set d=%HOMEDIR%\install\Gamedata
+set d=Gamedata
 if exist %d% goto two
 mkdir %d%
 :two
-set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera
+set d=GameData\WasdEditorCamera
 if exist %d% goto three
 mkdir %d%
 :three
-set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\Plugins
+set d=GameData\WasdEditorCamera\Plugins
 if exist %d% goto four
 mkdir %d%
 :four
-set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
+set d=GameData\WasdEditorCamera\PluginData
 if exist %d% goto five
 mkdir %d%
 :five
-set d=%HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures
+set d=GameData\WasdEditorCamera\Textures
 if exist %d% goto six
 mkdir %d%
 :six
 
-del /y %HOMEDIR%\install\Gamedata\WasdEditorCamera\Textures\*.*
+rem del /y \Gamedata\WasdEditorCamera\Textures\*.*
 
-xcopy src\Textures\WASD*.png   %HOMEDIR%\install\GameData\WasdEditorCamera\Textures /Y
-copy bin\Release\WasdEditorCamera.dll %HOMEDIR%\install\Gamedata\WasdEditorCamera\Plugins
-copy  WASD.version %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy README.md %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy ChangeLog.txt %HOMEDIR%\install\Gamedata\WasdEditorCamera
-copy WASD_Settings.cfg %HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
+xcopy src\Textures\WASD*.png   GameData\WasdEditorCamera\Textures /Y
+copy bin\Release\WasdEditorCamera.dll Gamedata\WasdEditorCamera\Plugins
+copy  WASD.version Gamedata\WasdEditorCamera
+copy README.md WasdEditorCamera
+copy ChangeLog.txt Gamedata\WasdEditorCamera
+copy WASD_Settings.cfg Gamedata\WasdEditorCamera\PluginData
 rem copy WASD_Settings.cfg.default %HOMEDIR%\install\Gamedata\WasdEditorCamera\PluginData
-copy MiniAVC.dll  %HOMEDIR%\install\Gamedata\WasdEditorCamera
-pause
+copy ..\MiniAVC.dll  Gamedata\WasdEditorCamera
 
-%HOMEDRIVE%
-cd %HOMEDIR%\install
+
 
 set FILE="%RELEASEDIR%\WasdEditorCamera-%VERSION%.zip"
 IF EXIST %FILE% del /F %FILE%

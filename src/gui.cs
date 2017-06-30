@@ -562,7 +562,7 @@ namespace WasdEditorCamera
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (GUILayout.Height(20));
-			GUILayout.Label ("Enforce bounds: ");
+			GUILayout.Label ("Enforce bounds (ignored if HangerExtender installed): ");
 			GUILayout.FlexibleSpace ();
 			newconfig.enforceBounds = 
 				GUILayout.Toggle (newconfig.enforceBounds, "");

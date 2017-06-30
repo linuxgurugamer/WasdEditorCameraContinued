@@ -44,3 +44,7 @@
 	Fixed bug where changing the toggle for the Enforce Bounds was not being seen until the editor was exited and reentered
 0.6.8
 	Redid config storage, moved cfg file into PluginData
+0.6.9
+	updated for 1.3
+0.6.10
+	Added check for FShangarExtender, if installed, bounds checking is ignored

@@ -37,6 +37,19 @@ namespace WasdEditorCamera
 
 		public static Config config = new Config() ;
 
+        static bool hangerExtenderInstalled = false;
+
+        static public bool hasMod(string modIdent)
+        {
+            foreach (AssemblyLoader.LoadedAssembly a in AssemblyLoader.loadedAssemblies)
+            {
+                if (modIdent == a.name)
+                    return true;
+
+            }
+            return false;
+        }
+
         static bool ReadConfigFile()
         {
             string fname = MainMenuGui.WASD_CFG_FILE;
@@ -75,13 +88,14 @@ namespace WasdEditorCamera
 
 		public static void checkMovementBounds()
 		{
+            hangerExtenderInstalled = hasMod("FShangarExtender");
 			movementBounds = new Bounds ();
 			if (EditorDriver.editorFacility == EditorFacility.VAB) {
 				movementBounds = config.vab.bounds;
 			} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
 				movementBounds = config.sph.bounds;
 			}
-			if (!config.enforceBounds) {
+			if (!config.enforceBounds || hangerExtenderInstalled) {
 				movementBounds = new Bounds (Vector3.zero, Vector3.one * float.MaxValue);
 			}
 		}

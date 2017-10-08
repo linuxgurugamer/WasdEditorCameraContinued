@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WasdEditorCamera", "WasdEditorCamera.csproj", "{B4BD1E86-57C6-401C-B652-CE54317F1106}"
 EndProject
@@ -10,7 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		buildRelease.bat = buildRelease.bat
 		ChangeLog.txt = ChangeLog.txt
 		Changes.txt = Changes.txt
-		ChangesLog.txt = ChangesLog.txt
 		deploy.bat = deploy.bat
 		LICENSE = LICENSE
 		License.txt = License.txt
@@ -31,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {301E2645-B7EE-41A4-9619-C7CC36C7B808}
 	EndGlobalSection
 EndGlobal

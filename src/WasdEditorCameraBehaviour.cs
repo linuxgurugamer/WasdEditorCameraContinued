@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 //using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -350,7 +351,12 @@ namespace WasdEditorCamera
 			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)
 				return;
 
-			if (Input.GetKeyDown (config.keySwitchMode)) {
+            GameObject obj = EventSystem.current.currentSelectedGameObject;
+            bool inputFieldIsFocused = (obj != null && obj.GetComponent<TMPro.TMP_InputField>() != null && obj.GetComponent<TMPro.TMP_InputField>().isFocused);
+            if (inputFieldIsFocused)
+                return;
+
+            if (Input.GetKeyDown (config.keySwitchMode)) {
 				SwitchMode ();
 			}
 

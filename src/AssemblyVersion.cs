@@ -5,4 +5,4 @@
   
  using System.Reflection;
 
- [assembly: AssemblyVersion("0.6.12.0")]
+ [assembly: AssemblyVersion("0.6.13.0")]

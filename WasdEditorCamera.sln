@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WasdEditorCamera", "WasdEditorCamera.csproj", "{B4BD1E86-57C6-401C-B652-CE54317F1106}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WasdEditorCamera", "src\WasdEditorCamera.csproj", "{B4BD1E86-57C6-401C-B652-CE54317F1106}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{7D019783-8C6C-40A1-8C04-0B9CDD3CF099}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,10 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		ChangeLog.txt = ChangeLog.txt
 		Changes.txt = Changes.txt
 		deploy.bat = deploy.bat
-		LICENSE = LICENSE
+		jenkins.txt = jenkins.txt
 		License.txt = License.txt
 		README.md = README.md
-		WASD.version = WASD.version
+		WasdEditorCamera.version = WasdEditorCamera.version
 	EndProjectSection
 EndProject
 Global

@@ -1,0 +1,23 @@
+﻿{
+	"NAME":"WASDEditorCameraContinued",
+	"URL":"https://raw.githubusercontent.com/linuxgurugamer/WasdEditorCameraContinued/master/WasdEditorCamera.version",
+	"DOWNLOAD":"https://github.com/linuxgurugamer/WasdEditorCameraContinued/releases",
+	"GITHUB" :
+	{
+		"USERNAME" : "linuxgurugamer",
+		"REPOSITORY" : "WasdEditorCameraContinued"
+	},
+	"VERSION":
+	{
+		"MAJOR":0,
+		"MINOR":6,
+		"PATCH":13,
+		"BUILD":0
+	},
+	"KSP_VERSION":
+	{
+		"MAJOR":1,
+		"MINOR":4,
+		"PATCH":1
+	}
+}

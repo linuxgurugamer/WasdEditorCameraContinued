@@ -1,36 +1,21 @@
-﻿rem line must not be used
+﻿
 
-set H=R:\KSP_1.3.1_dev
-echo %H%
+@echo off
 
-set d=%H%
-if exist %d% goto one
-mkdir %d%
-:one
-set d=%H%\Gamedata
-if exist %d% goto two
-mkdir %d%
-:two
-set d=%H%\Gamedata\WasdEditorCamera
-if exist %d% goto three
-mkdir %d%
-:three
-set d=%H%\Gamedata\WasdEditorCamera\Plugins
-if exist %d% goto four
-mkdir %d%
-:four
-set d=%H%\Gamedata\WasdEditorCamera\PluginData
-if exist %d% goto five
-mkdir %d%
-:five
-set d=%H%\Gamedata\WasdEditorCamera\Textures
-if exist %d% goto six
-mkdir %d%
-:six
+rem H is the destination game folder
+rem GAMEDIR is the name of the mod folder (usually the mod name)
+rem GAMEDATA is the name of the local GameData
+rem VERSIONFILE is the name of the version file, usually the same as GAMEDATA,
+rem    but not always
 
+set H=R:\KSP_1.4.1_dev
+set GAMEDIR=WasdEditorCamera
+set GAMEDATA="GameData\"
+set VERSIONFILE=%GAMEDIR%.version
 
+copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\Plugins"
+copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
 
-xcopy bin\Debug\WasdEditorCamera.dll  %H%\GameData\WasdEditorCamera\Plugins\  /Y
-xcopy src\Textures\*  %H%\GameData\WasdEditorCamera\Textures /Y
-xcopy WASD_Settings.cfg %H%\GameData\WasdEditorCamera\PluginData /y
-rem xcopy WASD_Settings.cfg.default %H%\GameData\WasdEditorCamera\PluginData /y
+xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+
+pause

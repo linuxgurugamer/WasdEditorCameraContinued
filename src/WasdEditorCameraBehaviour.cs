@@ -172,13 +172,15 @@ namespace WasdEditorCamera
 				gui.SetVisible (false);
 
 			}
-			if (HighLogic.LoadedScene == GameScenes.EDITOR ) {
+#if false
+            if (HighLogic.LoadedScene == GameScenes.EDITOR ) {
 				if (gui.WASD_Button == null)
 					GameEvents.onGUIApplicationLauncherReady.Add (gui.OnGUIApplicationLauncherReady);
 				gui.OnGUIShowApplicationLauncher ();
 			} else {
 				//setToolbarButtonVisibility (true);
 			}
+#endif
 			gui.set_WASD_Button_active (cameraEnabled && EditorLogic.SelectedPart == null );
 		}
 
@@ -218,7 +220,7 @@ namespace WasdEditorCamera
 
 				if (EditorDriver.editorFacility == EditorFacility.VAB) {
 					// Try to keep camera in place but looking at central pillar. VABCamera doesn't have xz offset.
-					#if true
+#if true
 					var cam = (VABCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(VABCamera));
 					if (!rayHit) {
 						var xzOffset = EditorLogic.fetch.editorCamera.gameObject.transform.position;
@@ -243,7 +245,7 @@ namespace WasdEditorCamera
 
 //					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
-					#else
+#else
 
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
 					Log.Info("cam.maxDisplaceX: " + cam.maxDisplaceX.ToString() + "     movementBounds.extents.x: " + movementBounds.extents.x.ToString());
@@ -257,7 +259,7 @@ namespace WasdEditorCamera
 					StartCoroutine (TurnSmoothingOffForOneFrame (cam));
 					cam.enabled = true;
 				
-					#endif
+#endif
 				} else if (EditorDriver.editorFacility == EditorFacility.SPH) {
 					var cam = (SPHCamera)EditorLogic.fetch.editorCamera.gameObject.GetComponent (typeof(SPHCamera));
 					cam.maxDisplaceX = movementBounds.extents.x;
@@ -616,7 +618,7 @@ namespace WasdEditorCamera
 		}
 	}
 
-	#if false
+#if false
 	public static class Refl
 	{
 		public static FieldInfo GetField (object obj, string name)
@@ -652,9 +654,9 @@ namespace WasdEditorCamera
 			return GetMethod (obj, name).Invoke (obj, args);
 		}
 	}
-	#endif
+#endif
 
-	#if false
+#if false
 	/**
 	 * What? How does that fix anything you ask? Magic! Well, here the best explaination I came up with:
 	 * 
@@ -701,5 +703,5 @@ namespace WasdEditorCamera
 			}
 		}
 	}
-	#endif
+#endif
 }

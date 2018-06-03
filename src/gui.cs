@@ -7,9 +7,16 @@ using ToolbarControl_NS;
 
 namespace WasdEditorCamera
 {
-	
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
+    public class RegisterToolbar : MonoBehaviour
+    {
+        void Start()
+        {
+            ToolbarControl.RegisterMod(MainMenuGui.MODID, MainMenuGui.MODNAME);
+        }
+    }
 
-	public class MainMenuGui : MonoBehaviour
+    public class MainMenuGui : MonoBehaviour
 	{
 
 		public const String TITLE = "WASD Editor Camera";
@@ -33,13 +40,8 @@ namespace WasdEditorCamera
 		// Stock APP Toolbar - Stavell
 		//public /*static*/ ApplicationLauncherButton WASD_Button = null;
         ToolbarControl toolbarControl = null;
-        public  bool stockToolBarcreated = false;
+        //public  bool stockToolBarcreated = false;
 
-#if false
-        private static Texture2D WASD_button_off = new Texture2D (38, 38, TextureFormat.ARGB32, false);
-		private static Texture2D WASD_button_on = new Texture2D (38, 38, TextureFormat.ARGB32, false);
-		private static bool WASD_Texture_Load = false;
-#endif
 
 		private bool cfgWinData = false;
 		private bool defaultsLoaded = false;
@@ -169,91 +171,46 @@ namespace WasdEditorCamera
 //			listStyle.onHover.background = texWhite;
 		listStyle.hover.background = texGrey;
 		listStyle.active.background = texBlue;
-//			listStyle.focused.background = texMagenta;
-//			listStyle.onActive.background = texGreen;
-//			listStyle.onNormal.background = texGrey;
-//			listStyle.onFocused.background = texYellow;			
+            //			listStyle.focused.background = texMagenta;
+            //			listStyle.onActive.background = texGreen;
+            //			listStyle.onNormal.background = texGrey;
+            //			listStyle.onFocused.background = texYellow;			
 
-		}
+        }
 
-        //		public void setAppLauncherHidden ()
-        //		{
-        //			appLaucherHidden = true;
-        //		}
-#if false
-        public void OnGUIShowApplicationLauncher ()
+        
+        internal const string MODID = "WASD_NS";
+        internal const string MODNAME = "WASD Editor Camera";
+
+        public void UpdateToolbarStock ()
 		{
-			if (appLaucherHidden) {
-				appLaucherHidden = false;
-				if (WASD_Button != null)
-					UpdateToolbarStock ();
-			}
-
-		}
-
-		public void OnGUIApplicationLauncherReady ()
-		{
-			UpdateToolbarStock ();
-		}
-#endif
-
-		public void UpdateToolbarStock ()
-		{
-#if false
-            // Create the button in the KSP AppLauncher
-
-            if (!WASD_Texture_Load) {
-				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-38")) {
-					WASD_button_off = GameDatabase.Instance.GetTexture (TEXTURE_DIR + "WASD-38", false);
-				}
-				if (GameDatabase.Instance.ExistsTexture (TEXTURE_DIR + "WASD-on-38")) {
-					WASD_button_on = GameDatabase.Instance.GetTexture (TEXTURE_DIR + "WASD-on-38", false);
-				}
-
-				WASD_Texture_Load = true;
-			}
-			if (WASD_Button == null) {
-
-				WASD_Button = ApplicationLauncher.Instance.AddModApplication (GUIToggle, GUIToggle,
-					null, null,
-					null, null,
-					ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
-					WASD_button_off);
-				stockToolBarcreated = true;
-			}
-#endif
             if (toolbarControl == null)
             {
                 toolbarControl = gameObject.AddComponent<ToolbarControl>();
                 toolbarControl.AddToAllToolbars(GUIToggle, GUIToggle,
                     ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
-                    "WASD_NS",
+                    MODID,
                     "wasdButton",
                     TEXTURE_DIR + "WASD-on-38",
                     TEXTURE_DIR + "WASD-38",
                     TEXTURE_DIR + "WASD-on-24",
                     TEXTURE_DIR + "WASD-24",
-                    "WASD Editor Camera"
+                    MODNAME
                 );
-                toolbarControl.UseBlizzy(WasdEditorCameraBehaviour.config.useBlizzy);
 
             }
         }
 
 		public void set_WASD_Button_active (bool i)
 		{
-#if false
             if (!i)
-				WASD_Button.SetTexture (WASD_button_off);
-			else
-				WASD_Button.SetTexture (WASD_button_on);
-#endif
-		}
+                toolbarControl.SetTexture(TEXTURE_DIR + "WASD-38", TEXTURE_DIR + "WASD-24");
+            else
+                toolbarControl.SetTexture(TEXTURE_DIR + "WASD-on-38", TEXTURE_DIR + "WASD-on-24");
+        }
 
 		public void GUIToggle ()
 		{
-
-			stockToolBarcreated = true;
 			infoDisplayActive = !infoDisplayActive;
 
 			if (infoDisplayActive) {
@@ -277,9 +234,6 @@ namespace WasdEditorCamera
 
 		public void OnDestroy()
 		{
-#if false
-            ApplicationLauncher.Instance.RemoveModApplication (this.WASD_Button);
-#endif
             toolbarControl.OnDestroy();
             Destroy(toolbarControl);
         }
@@ -296,8 +250,6 @@ namespace WasdEditorCamera
 
 		public void OnGUI ()
 		{
-            if (toolbarControl != null)
-                toolbarControl.UseBlizzy(WasdEditorCameraBehaviour.config.useBlizzy);
             try {
 				if (this.Visible ()) {
 					this.bounds = ClickThruBlocker.GUILayoutWindow (this.GetInstanceID (), this.bounds, this.Window, TITLE, HighLogic.Skin.window);
@@ -314,22 +266,6 @@ namespace WasdEditorCamera
             cfgWinData = false;
             defaultsLoaded = true;
             return true;
-#if false
-            string fname = WASD_CFG_FILE + ".default";
-            if (System.IO.File.Exists(fname))
-            {
-
-                ConfigNode file = ConfigNode.Load(fname);
-                var root = file.GetNode(WASD_NODENAME);
-
-                newconfig.parseConfigNode(root);
-
-                cfgWinData = false;
-                defaultsLoaded = true;
-                return true;
-            }
-            return false;
-#endif
         }
 
         private void Window (int id)

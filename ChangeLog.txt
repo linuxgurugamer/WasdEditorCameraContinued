@@ -58,3 +58,10 @@
 	Updated for KSP 1.4.1
 	Added support for ClickThroughBlocker
 	Added support for ToolbarController
+
+0.6.13.1
+	Updated version file for all 1.4
+	Added dependency checking for toolbarcontroller
+	Added dependency checking for clickthroughblocker
+	Restored functionality of changing button if active or not
+	Updated toolbar control to register button

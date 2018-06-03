@@ -172,15 +172,7 @@ namespace WasdEditorCamera
 				gui.SetVisible (false);
 
 			}
-#if false
-            if (HighLogic.LoadedScene == GameScenes.EDITOR ) {
-				if (gui.WASD_Button == null)
-					GameEvents.onGUIApplicationLauncherReady.Add (gui.OnGUIApplicationLauncherReady);
-				gui.OnGUIShowApplicationLauncher ();
-			} else {
-				//setToolbarButtonVisibility (true);
-			}
-#endif
+
 			gui.set_WASD_Button_active (cameraEnabled && EditorLogic.SelectedPart == null );
 		}
 
@@ -290,15 +282,7 @@ namespace WasdEditorCamera
 					ScreenMessages.PostScreenMessage ("Switched to wasd camera", MESSAGE_TEMPLATE);
 			}
 		}
-#if false
-		private IEnumerator<object> TurnSmoothingOffForOneFrame (object camBehaviour)
-		{
-			var oldValue = (float)Refl.GetValue (camBehaviour, "sharpness");
-			Refl.SetValue (camBehaviour, "sharpness", float.MaxValue);
-			yield return null;
-			Refl.SetValue (camBehaviour, "sharpness", oldValue);
-		}
-#endif
+
 		private bool GetNewFocalPoint (out Vector3 point, out float distance)
 		{
 			Log.Info ("GetNewFocalPoint");
@@ -339,15 +323,7 @@ namespace WasdEditorCamera
 			}
 			vel = Vector3.zero;
 		}
-#if false
-		private void UpdateDragPlane ()
-		{
-			Refl.Invoke (EditorLogic.fetch, "CenterDragPlane", EditorLogic.SelectedPart.transform.position + EditorLogic.fetch.selPartGrabOffset);
-			var args = new object[] { new Vector3 () };
-			Refl.Invoke (EditorLogic.fetch, "dragOverPlane", args);
-			EditorLogic.SelectedPart.transform.position = (Vector3)args [0];
-		}
-#endif
+
 		public void LateUpdate ()
 		{
 			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)

@@ -326,7 +326,7 @@ namespace WasdEditorCamera
 
 		public void LateUpdate ()
 		{
-			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null)
+			if (HighLogic.LoadedScene != GameScenes.EDITOR || EditorLogic.fetch == null || !MainMenuGui.active)
 				return;
 
             GameObject obj = EventSystem.current.currentSelectedGameObject;

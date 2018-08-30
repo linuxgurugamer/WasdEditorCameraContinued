@@ -16,7 +16,7 @@ namespace WasdEditorCamera
 		public KeyCode keySneak;
 		public KeyCode keySwitchMode;
 
-        public bool useBlizzy;
+        //public bool useBlizzy;
 		public bool enableExperimentalEditorExtensionsCompatibility;
 		public bool defaultCamera;
 		public bool enforceBounds;
@@ -53,7 +53,7 @@ namespace WasdEditorCamera
             keySwitchMode = KeyCode.Alpha5;
 
             enableExperimentalEditorExtensionsCompatibility = true;
-            useBlizzy = false;
+            //useBlizzy = false;
             defaultCamera = true;
             enforceBounds = true;
             mouseWheelActive = true;
@@ -98,6 +98,7 @@ namespace WasdEditorCamera
 				enableExperimentalEditorExtensionsCompatibility = Boolean.Parse (root.GetValue ("enableExperimentalEditorExtensionsCompatibility"));
 			} catch {
 			}
+#if false
             try
             {
                 useBlizzy = Boolean.Parse(root.GetValue("useBlizzy"));
@@ -105,6 +106,7 @@ namespace WasdEditorCamera
             catch
             {
             }
+#endif
             try {
 				defaultCamera = Boolean.Parse (root.GetValue ("defaultCamera"));
 			} catch {

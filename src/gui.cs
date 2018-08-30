@@ -187,7 +187,7 @@ namespace WasdEditorCamera
             if (toolbarControl == null)
             {
                 toolbarControl = gameObject.AddComponent<ToolbarControl>();
-                toolbarControl.AddToAllToolbars(GUIToggle, GUIToggle,
+                toolbarControl.AddToAllToolbars(null,null,
                     ApplicationLauncher.AppScenes.VAB | ApplicationLauncher.AppScenes.SPH,
                     MODID,
                     "wasdButton",
@@ -197,16 +197,25 @@ namespace WasdEditorCamera
                     TEXTURE_DIR + "WASD-24",
                     MODNAME
                 );
-
+                toolbarControl.AddLeftRightClickCallbacks(GUIToggle, ToggleActive);
+                    
             }
         }
 
+        static bool on = false;
 		public void set_WASD_Button_active (bool i)
 		{
-            if (!i)
-                toolbarControl.SetTexture(TEXTURE_DIR + "WASD-38", TEXTURE_DIR + "WASD-24");
+            if (!active)
+                toolbarControl.SetTexture(TEXTURE_DIR + "WASD-disabled-38",
+                        TEXTURE_DIR + "WASD-disabled-24");
             else
-                toolbarControl.SetTexture(TEXTURE_DIR + "WASD-on-38", TEXTURE_DIR + "WASD-on-24");
+            {
+                on = i;
+                if (!i)
+                    toolbarControl.SetTexture(TEXTURE_DIR + "WASD-38", TEXTURE_DIR + "WASD-24");
+                else
+                    toolbarControl.SetTexture(TEXTURE_DIR + "WASD-on-38", TEXTURE_DIR + "WASD-on-24");
+            }
         }
 
 		public void GUIToggle ()
@@ -223,6 +232,12 @@ namespace WasdEditorCamera
 				UpdateToolbarStock ();
 			}
 		}
+        public static bool active = true;
+        public void ToggleActive()
+        {
+            active = !active;
+            set_WASD_Button_active(on);
+        }
 
 		private void HideToolbarStock ()
 		{
@@ -470,18 +485,19 @@ namespace WasdEditorCamera
 			strVabBoundsMaxZ = GUILayout.TextField (strVabBoundsMaxZ, GUILayout.MinWidth (60.0F), GUILayout.MaxWidth (60.0F));
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginHorizontal (GUILayout.Height(20));
+			GUILayout.BeginHorizontal (GUILayout.Height(40));
 			GUILayout.Label ("");
 			GUILayout.EndHorizontal ();
-
+         
+#if false
             GUILayout.BeginHorizontal(GUILayout.Height(20));
-            GUILayout.Label("Use Blizzy toolbar if available: ");
+            //GUILayout.Label("Use Blizzy toolbar if available: ");
             GUILayout.FlexibleSpace();
-            WasdEditorCameraBehaviour.config.useBlizzy =
-                GUILayout.Toggle(WasdEditorCameraBehaviour.config.useBlizzy, "");
+            //WasdEditorCameraBehaviour.config.useBlizzy =
+            //    GUILayout.Toggle(WasdEditorCameraBehaviour.config.useBlizzy, "");
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
-
+#endif
             GUILayout.BeginHorizontal (GUILayout.Height(20));
 			if (GUILayout.Button ("Defaults", GUILayout.Width (125.0f))) {
 				bool b = SetDefaults ();
@@ -807,7 +823,7 @@ namespace WasdEditorCamera
 			ConfigNode root = new ConfigNode ();
 			ConfigNode top = new ConfigNode (WASD_NODENAME);
 			root.SetNode (WASD_NODENAME, top, true);
-            top.SetValue("useBlizzy", config.useBlizzy, true);
+            //top.SetValue("useBlizzy", config.useBlizzy, true);
             top.SetValue("defaultCamera", config.defaultCamera, true);
             top.SetValue ("mouseWheelActive", config.mouseWheelActive, true);
 			top.SetValue ("enableExperimentalEditorExtensionsCompatibility", config.enableExperimentalEditorExtensionsCompatibility, true);

@@ -1,6 +1,6 @@
 ﻿{
     "NAME": "WASDEditorCameraContinued",
-    "URL": "https://raw.githubusercontent.com/linuxgurugamer/WasdEditorCameraContinued/master/WasdEditorCamera.version",
+    "URL": "http://ksp.spacetux.net/avc/WasdEditorCamera",
     "DOWNLOAD": "https://github.com/linuxgurugamer/WasdEditorCameraContinued/releases",
     "GITHUB": {
         "USERNAME": "linuxgurugamer",
@@ -10,21 +10,21 @@
         "MAJOR": 0,
         "MINOR": 6,
         "PATCH": 13,
-        "BUILD": 2
+        "BUILD": 3
     },
     "KSP_VERSION": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 1
     },
     "KSP_VERSION_MIN": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 1
     },
     "KSP_VERSION_MAX": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 99
     }
 }

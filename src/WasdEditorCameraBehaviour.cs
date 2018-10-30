@@ -86,9 +86,14 @@ namespace WasdEditorCamera
 			//config.parseConfigNode (root);
 			//Log.Info ("end of readConfig");
 		}
-
+        static EditorFacility lastEditorMode;
 		public static void checkMovementBounds()
 		{
+            Log.Info("checkMovementBounds, EditorDriver.editorFacility: " + EditorDriver.editorFacility);
+
+ 
+
+            lastEditorMode = EditorDriver.editorFacility;
             hangerExtenderInstalled = hasMod("FShangarExtender");
 			movementBounds = new Bounds ();
 			if (EditorDriver.editorFacility == EditorFacility.VAB) {
@@ -128,7 +133,7 @@ namespace WasdEditorCamera
 
 			cursorLocker = Application.platform == RuntimePlatform.WindowsPlayer ? new WinCursorLocker () : (CursorLocker)new UnityLocker ();
 
-			checkMovementBounds ();
+			
 
 
 			var restartListener = new EventVoid.OnEvent (this.OnEditorRestart);
@@ -139,13 +144,13 @@ namespace WasdEditorCamera
 			GameEvents.onEditorPartEvent.Add (partEventListener);
 			OnCleanup += () => GameEvents.onEditorPartEvent.Remove (partEventListener);
 
-
-			if (config.defaultCamera) {
-				SwitchMode (false);
-				ResetCamera ();
-			}
-
-		}
+            checkMovementBounds ();
+            if (config.defaultCamera)
+            {
+                SwitchMode(false);
+                ResetCamera();
+            }
+        }
 
 		public void OnDestroy ()
 		{
@@ -165,8 +170,17 @@ namespace WasdEditorCamera
 
 		public void Update ()
 		{
-			
-			if (gui == null) {
+            if (lastEditorMode != EditorDriver.editorFacility)
+            {
+                checkMovementBounds();
+                if (config.defaultCamera)
+                {
+                    SwitchMode(false);
+                    ResetCamera();
+                }
+            }
+
+            if (gui == null) {
 				gui = this.gameObject.AddComponent<MainMenuGui> ();
 				gui.UpdateToolbarStock ();
 				gui.SetVisible (false);

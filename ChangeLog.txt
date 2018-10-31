@@ -75,3 +75,8 @@
 
 0.6.14.0
 	Fixed issue when switching editors between vab and sph, parts would jump when adding new parts
+
+0.6.14.1
+	Cleaned up the code for checkMovementBounds for switching editors
+	Removed minimal log spam;
+	Fixed camera from being disabled after switching editors

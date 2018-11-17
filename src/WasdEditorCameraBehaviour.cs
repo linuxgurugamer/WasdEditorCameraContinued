@@ -611,6 +611,7 @@ namespace WasdEditorCamera
         public void UnlockCursor()
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             //			Screen.lockCursor = false;
         }
     }

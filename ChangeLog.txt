@@ -84,3 +84,6 @@
 0.6.14.2
 	Fixed issue on Linux: On linux the cursor disappears in the VAB/SPH when rotating the camera with a middle/right click.
 
+0.6.14.4
+	Deleted old commented out blizzy code
+	Fixed incorrect initialization of variables

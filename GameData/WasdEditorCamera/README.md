@@ -9,6 +9,7 @@ I've enhanced it with the following new features:
 	Disable WASD editor when part is selected
 	Refactored code to make it more organized
 	Replaced logging code with a class
+	Added right-click on button to disable
 
 
 

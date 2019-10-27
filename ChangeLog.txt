@@ -91,3 +91,6 @@
 0.6.15
 	Version bump for 1.7.2
 	Updated AssemblyVersion.tt
+
+0.7.0
+	Updated for KSP 1.8

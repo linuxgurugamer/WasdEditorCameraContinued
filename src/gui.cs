@@ -56,7 +56,7 @@ namespace WasdEditorCamera
 
         private bool cfgWinData = false;
         private bool defaultsLoaded = false;
-        private static bool appLaucherHidden = true;
+        //private static bool appLaucherHidden = true;
 
         private Config newconfig;
 
@@ -259,7 +259,7 @@ namespace WasdEditorCamera
             //ApplicationLauncher.Instance.RemoveModApplication (MainMenuGui.WASD_Button);
             //Destroy (WASD_Button); // Is this necessary?
             //WASD_Button = null;
-            appLaucherHidden = false;
+            //appLaucherHidden = false;
         }
 
         public void OnDestroy()

@@ -41,7 +41,7 @@ namespace WasdEditorCamera
     internal class InstallChecker : MonoBehaviour
     {
         internal const string MODNAME = "Wasd Editor Camera Continued";
-        internal const string FOLDERNAME = "WasdEditorCameraContinued";
+        internal const string FOLDERNAME = "WasdEditorCamera";
         internal const string EXPECTEDPATH = FOLDERNAME + "/Plugins";
 
         protected void Start()

@@ -94,3 +94,6 @@
 
 0.7.0
 	Updated for KSP 1.8
+
+0.7.0.1
+	Fixed InstallChecker with correct folder

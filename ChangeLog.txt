@@ -97,3 +97,7 @@
 
 0.7.0.1
 	Fixed InstallChecker with correct folder
+
+0.7.2
+	Actual revert
+	Updated local build files

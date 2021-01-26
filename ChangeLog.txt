@@ -101,3 +101,7 @@
 0.7.2
 	Actual revert
 	Updated local build files
+
+0.7.3
+	Thanks to github user @kspdrgn for this:
+		allow picking from all KeyCodes in the key binding UI.

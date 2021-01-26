@@ -39,6 +39,11 @@ namespace WasdEditorCamera
 			public float initialYaw;
 		}
 
+		public static KeyCode[] ExcludeKeysFromBinding { get; } = new[] {
+			KeyCode.None,
+			KeyCode.Escape,
+		};
+
         public void initConfig()
         {
             keyForward = KeyCode.W;

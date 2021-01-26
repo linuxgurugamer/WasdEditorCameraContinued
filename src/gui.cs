@@ -4,6 +4,7 @@ using System.IO;
 using KSP.UI.Screens;
 using ClickThroughFix;
 using ToolbarControl_NS;
+using System.Linq;
 
 namespace WasdEditorCamera
 {
@@ -100,17 +101,18 @@ namespace WasdEditorCamera
         {
             //			DontDestroyOnLoad (this);
 
-            comboBoxList = new GUIContent[87];
-            string[] keys = {"Space", "Keypad0", "Keypad1", "Keypad2", "Keypad3", "Keypad4", "Keypad5", "Keypad6",
-                "Keypad7", "Keypad8", "Keypad9", "KeypadPeriod", "KeypadDivide", "KeypadMultiply", "KeypadMinus",
-                "KeypadPlus", "KeypadEnter", "KeypadEquals", "UpArrow", "DownArrow", "RightArrow", "LeftArrow",
-                "Insert", "Home", "End", "PageUp", "PageDown", "F1", "F2", "F3", "F4", "F5",
-                "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "Alpha0",
-                "Alpha1", "Alpha2", "Alpha3", "Alpha4", "Alpha5", "Alpha6", "Alpha7", "Alpha8", "Alpha9", "A",
-                "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-                "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Numlock",
-                "CapsLock", "ScrollLock", "RightShift", "LeftShift", "RightControl", "LeftControl", "RightAlt", "LeftAlt"
-            };
+            var dontBindTheseKeys = Config
+                .ExcludeKeysFromBinding
+                .ToDictionary(k => k.ToString());
+
+            // set key dropdown values to be all keycodes (except ExcludeKeysFromBinding).
+            string[] keys = Enum
+                .GetNames(typeof(KeyCode))
+                .Where(x => !dontBindTheseKeys.ContainsKey(x))
+                .ToArray();
+
+            comboBoxList = new GUIContent[keys.Length];
+
             for (int i = 0; i < keys.Length; i++)
                 comboBoxList[i] = new GUIContent(keys[i]);
 

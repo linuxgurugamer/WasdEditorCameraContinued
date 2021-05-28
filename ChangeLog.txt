@@ -105,3 +105,6 @@
 0.7.3
 	Thanks to github user @kspdrgn for this:
 		allow picking from all KeyCodes in the key binding UI.
+
+0.7.3.1
+	Renamed DLL for better compatibility with CKAN

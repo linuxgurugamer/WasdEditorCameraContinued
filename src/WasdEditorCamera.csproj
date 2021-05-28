@@ -6,7 +6,7 @@
     <ProjectGuid>{B4BD1E86-57C6-401C-B652-CE54317F1106}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>WasdEditorCamera</RootNamespace>
-    <AssemblyName>WasdEditorCamera</AssemblyName>
+    <AssemblyName>WasdEditorCameraContinued</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>

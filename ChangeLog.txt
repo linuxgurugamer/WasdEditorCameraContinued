@@ -108,3 +108,6 @@
 
 0.7.3.1
 	Renamed DLL for better compatibility with CKAN
+
+0.7.3.2
+	Added AssemblyFileVersion

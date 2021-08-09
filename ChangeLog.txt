@@ -111,3 +111,6 @@
 
 0.7.3.2
 	Added AssemblyFileVersion
+
+0.7.3.3
+	Fixed check for HangerExtender because of the rename of the dll

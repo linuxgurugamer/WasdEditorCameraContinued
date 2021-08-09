@@ -99,7 +99,7 @@ namespace WasdEditorCamera
         public static void checkMovementBounds()
         {
             lastEditorMode = EditorDriver.editorFacility;
-            hangerExtenderInstalled = hasMod("FShangarExtender");
+            hangerExtenderInstalled = hasMod("FShangarExtender") || hasMod("HangerExtenderExtended");
             movementBounds = new Bounds();
             if (EditorDriver.editorFacility == EditorFacility.VAB)
             {
